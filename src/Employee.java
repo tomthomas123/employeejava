@@ -91,6 +91,38 @@ import java.sql.*;
                             System.out.println(e);
                         }
                         break;
+                    case 4:
+                        System.out.println("Update a Employee");
+                        System.out.println("Enter the Employee code: ");
+                        empcode = input.nextInt();
+                        System.out.println("Enter Employee name to update: ");
+                        empname = input.next();
+                        System.out.println("Enter the designation to update: ");
+                        empdes = input.next();
+                        System.out.println("Enter the salary to update: ");
+                        empsalary = input.nextInt();
+                        System.out.println("Enter the Company name to update: ");
+                        compname = input.next();
+                        System.out.println("Enter the Phone Number to update: ");
+                        empphone = input.next();
+                        System.out.println("Enter the Email Id to update: ");
+                        empemail = input.next();
+                        System.out.println("Enter the password to update: ");
+                        emppassword = input.next();
+
+                        try {
+                            Class.forName("com.mysql.jdbc.Driver");
+                            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/employeedb", "root", "");
+                            String sql = "UPDATE `employee` SET `empname`='"+empname+"',`designation`='"+empdes+"',`salary`='"+empsalary+"',`companyname`='"+compname+"',`phone`='"+empphone+"',`emailid`='"+empemail+"',`password`='"+emppassword+"' WHERE `empcode` = "+String.valueOf(empcode);
+
+                            Statement stmt = con.createStatement();
+                            stmt.executeUpdate(sql);
+                            System.out.println("Data updated successfully");
+                        }
+                        catch (Exception e){
+                            System.out.println(e);
+                        }
+                        break;
                 }
             }
         }
